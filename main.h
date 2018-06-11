@@ -13,9 +13,12 @@
 
 using namespace std;
 
-int compare(tuple<int, int>& a, tuple<int, int>& b)
+int compare(string& a, string& b)
 {
-    return ( get<1>(a) > get<1>(b) );
+    if (a.compare(b) >= 0) {
+        return false;
+    }
+    return true;
 }
 
 #endif //UDACITY_COURSE_MAIN_H
