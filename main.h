@@ -12,10 +12,5 @@
 
 using namespace std;
 
-int compare(tuple<string, int>& a, tuple<string, int>& b)
-{
-    return ( get<1>(a) > get<1>(b) );
-}
-
 
 #endif //UDACITY_COURSE_MAIN_H
