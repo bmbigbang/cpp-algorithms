@@ -1,37 +1,26 @@
 #include "main.h"
 
 int main() {
-    char inputVal[50];
-    string s;
-    string item1 = "a";
-    string item2 = "is";
-    int score1, score2;
-    vector<int> p;
-    size_t found;
+    int rollNumber;
+    int score;
 
-    for (int i = 0; i < 4; i++) {
-        score1 = -1;
-        score2 = -1;
-        cout << "Enter a word:" << endl;
-        scanf(" %49[0-9a-zA-Z ]", inputVal);
-        s = string(inputVal);
+    vector<tuple<int, int>> p;
 
-        found = s.find(item1);
-        if (found != string::npos) {
-            cout << found << endl;
-            score1 = (int) found;
-        }
-
-        found = s.find(item2);
-        if (found != string::npos) {
-            cout << found << endl;
-            score2 = (int) found;
-        }
-
-        p.emplace_back(score1 + score2);
+    cout << "Enter student records:" << endl;
+    for (int i = 0; i < 10; i++) {
+        scanf(" %d-%d", &rollNumber, &score);
+        p.emplace_back(tuple<int, int>(rollNumber, score));
     }
 
+    sort(p.begin(), p.end(), compare);
+    set<int> rollNo;
+    bool is_in;
+
     for (auto i : p) {
-        cout << i << endl;
+        is_in = rollNo.find(get<0>(i)) != rollNo.end();
+        if (!is_in) {
+            cout << get<0>(i) << " " << get<1>(i) << endl;
+            rollNo.insert(get<0>(i));
+        }
     }
 }
